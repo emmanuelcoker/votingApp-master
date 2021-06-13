@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddDeptAndFacultyAndStatusToUsers' => $baseDir . '/database/migrations/2021_06_12_234845_add_dept_and_faculty_and_status_to_users.php',
+    'AddSeatAndPriviledgeAndProfileImgToCandidatesTable' => $baseDir . '/database/migrations/2021_06_12_235813_add_seat_and_priviledge_and_profile_img_to_candidates_table.php',
     'App\\Candidate' => $baseDir . '/app/Candidate.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -49,8 +51,12 @@ return array(
     'Collective\\Html\\HtmlServiceProvider' => $vendorDir . '/laravelcollective/html/src/HtmlServiceProvider.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'CreateCandidatesTable' => $baseDir . '/database/migrations/2017_05_05_000000_create_candidates_table.php',
+    'CreateDepartmentTable' => $baseDir . '/database/migrations/2021_06_12_233417_create_department_table.php',
+    'CreateFacultyTable' => $baseDir . '/database/migrations/2021_06_12_232736_create_faculty_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreatePriviledgesTable' => $baseDir . '/database/migrations/2021_06_12_235409_create_priviledges_table.php',
     'CreateRolesTable' => $baseDir . '/database/migrations/2017_05_05_000000_create_roles_table.php',
+    'CreateSeatsTable' => $baseDir . '/database/migrations/2021_06_12_235602_create_seats_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_153604_create_users_table.php',
     'Cron\\AbstractField' => $vendorDir . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
     'Cron\\CronExpression' => $vendorDir . '/mtdowling/cron-expression/src/Cron/CronExpression.php',

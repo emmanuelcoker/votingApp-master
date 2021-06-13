@@ -313,6 +313,8 @@ class ComposerStaticInit091f92ecbb27616b1f097c7e3b03f4cb
     );
 
     public static $classMap = array (
+        'AddDeptAndFacultyAndStatusToUsers' => __DIR__ . '/../..' . '/database/migrations/2021_06_12_234845_add_dept_and_faculty_and_status_to_users.php',
+        'AddSeatAndPriviledgeAndProfileImgToCandidatesTable' => __DIR__ . '/../..' . '/database/migrations/2021_06_12_235813_add_seat_and_priviledge_and_profile_img_to_candidates_table.php',
         'App\\Candidate' => __DIR__ . '/../..' . '/app/Candidate.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -356,8 +358,12 @@ class ComposerStaticInit091f92ecbb27616b1f097c7e3b03f4cb
         'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'CreateCandidatesTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_05_000000_create_candidates_table.php',
+        'CreateDepartmentTable' => __DIR__ . '/../..' . '/database/migrations/2021_06_12_233417_create_department_table.php',
+        'CreateFacultyTable' => __DIR__ . '/../..' . '/database/migrations/2021_06_12_232736_create_faculty_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreatePriviledgesTable' => __DIR__ . '/../..' . '/database/migrations/2021_06_12_235409_create_priviledges_table.php',
         'CreateRolesTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_05_000000_create_roles_table.php',
+        'CreateSeatsTable' => __DIR__ . '/../..' . '/database/migrations/2021_06_12_235602_create_seats_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_153604_create_users_table.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/CronExpression.php',
