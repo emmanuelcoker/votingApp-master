@@ -35,6 +35,12 @@
                                     <input type="password" required="" name="password">
                                 </label>
 
+                                @if (Route::has('password.request'))
+                                <a class="w-100 text-center btn btn-sm btn-flat" style="text-decoration: underline;" href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                            @endif
+
                     </section>
 
                 </fieldset>

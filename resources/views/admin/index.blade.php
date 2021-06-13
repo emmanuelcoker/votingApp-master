@@ -74,7 +74,25 @@
       <input type="text" name="name" placeholder="Name" required>
     </p>
     <p class="contact-input">
-      <input type="text" name="email" placeholder="email" required>
+        <label for="department">Department</label>
+        <select name="dept" id="dept">
+            <option value="{{0}}">None</option>
+            @foreach($departments as $department)
+                <option value="{{$department->name ?? 0}}">{{$department->name}}</option>
+            @endforeach
+        </select>
+      </p>
+      <p class="contact-input">
+        <label for="faculty">Faculty</label>
+        <select name="faculty" id="faculty">
+            <option value="{{0}}">None</option>
+            @foreach($faculties as $faculty)
+                <option value="{{$faculty->name}}">{{$faculty->name}}</option>
+            @endforeach
+        </select>
+      </p>
+    <p class="contact-input">
+      <input type="email" name="email" placeholder="email" required>
     </p>
     <p class="contact-input">
       <input type="password" name="password" placeholder="password" required>
@@ -85,27 +103,38 @@
     </p>
   </fieldset>
 </form>
+<!--End of Form-->
 
+<!--Start of Student Block-->
 <div id="constrainer1">
 <h3>Students Voters</h3>
     <table>
-        <thead>
-        <th>Reg no.</th><th>Name</th><th>Email</th><th>action</th>
+        <thead class="row">
+        <th class="text-center col-lg-3">Matric Number</th>
+        <th class="text-center col-lg-2">Name</th>
+        <th class="text-center col-lg-2">Email</th>
+        <th class="text-center col-lg-1">Department</th>
+        <th class="text-center col-lg-1">Faculty</th>
+        <th class="text-center col-lg-1">Status</th>
+        <th class="text-center col-lg-2">action</th>
         </thead>
         <tbody>
         @foreach($users as $user)
         <tr>
-            <td>{{$user->regno}}</td><td>{{$user->name}}</td>
-            <td>{{$user->email}}</td>
-            <td>
+            <td class="text-center col-lg-3">{{$user->regno}}</td>
+            <td class="text-center col-lg-2">{{$user->name}}</td>
+            <td class="text-center col-lg-2">{{$user->email}}</td>
+            <td class="text-center col-lg-1">{{$user->department ?? "None"}}</td>
+            <td class="text-center col-lg-1">{{$user->user_faculty ?? "None"}}</td>
+            <td class="text-center col-lg-1">{{$user->admission_status}}</td>
+            <td class="text-center col-lg-2">
                 <form action="{{route('candidate.add')}}" method="POST">
                     @if(empty($user->candidate)) {{csrf_field()}}
                     <input type="hidden" name="id" value="{{$user->id}}">
                     <select name="seat">
-                        <option value="president">President</option>
-                        <option value="vice-chair">Vice Chair</option>
-                        <option value="finance">Finance</option>
-                        <option value="sec-general">Sec-general</option>
+                        @foreach ($seats as $seat)
+                        <option value="{{$seat->position}}">{{$seat->position}}</option>
+                        @endforeach
                     </select>
                     <input type="submit"value="Add Student">
                     @else
@@ -119,19 +148,12 @@
     </table>
 </div>
 
-    <div class="col-lg-12">
+<!--End of student block-->
 
-                    </div>
-                .
-				  <div class="row">
-                    <div class="col-lg-12 ">
-
-
-    </div>
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->
-        </div>
+            </div>
     <div class="footer">
 
 

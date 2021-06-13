@@ -29,25 +29,9 @@ Route::post('/candidate/vote',[
         'as'=>'vote'
     ])->middleware(['voter','auth']);
 
-// auth routes
-Route::get('/login',[
-    'uses'=>'Auth\LoginController@show',
-    'as'=>'loginPage'
-]);
-Route::post('/login',[
-    'uses'=>'Auth\LoginController@login',
-    'as'=>'login'
-]);
-Route::get('/logout',[
-    'uses'=>'Auth\LoginController@logout',
-    'as'=>'logout'
-]);
 
-// auth routes
-Route::post('/register',[
-    'uses'=>'VoterController@register',
-    'as'=>'register'
-])->middleware('auth');
+Auth::routes();
+
 
 // admin Routes
 Route::get('/admin/index',[

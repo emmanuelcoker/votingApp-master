@@ -35,13 +35,24 @@ class User extends Authenticatable
         return $this->hasOne('App\Candidate');
     }
 
-    public function registerVoter($name,$email,$password,$regno){
+    public function user_faculty(){
+        return $this->belongsTo('App\Faculty');
+    }
+
+    public function department(){
+        return $this->belongsTo('App\Department');
+    }
+
+    public function registerVoter($name,$email,$password,$regno,$dept,$faculty){
         $newVoter = new User;
         $newVoter->name = $name;
         $newVoter->email = $email;
         $newVoter->password = bcrypt($password);
         $newVoter->regno = $regno;
         $newVoter->role_id = 2;
+        $newVoter->dept = $dept;
+        $newVoter->faculty = $faculty;
+        $newVoter->admission_status = "In Session";
         $newVoter->save();
     }
     public static function addCandidate($studentId,$seat){

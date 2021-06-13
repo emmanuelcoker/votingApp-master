@@ -15,8 +15,9 @@
         <div class="container-fluid">
 
             <div class="navbar-header">
+                
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> About<i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle navigation</span>-<i class="fas fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Ivote</a>
             </div>
@@ -27,6 +28,12 @@
                     <li>
                         <a class="page-scroll" href="#about">About</a>
                     </li>
+                    @if(auth()->user()->role_id == 1)
+                    <li>
+                        <a class="page-scroll" href="{{route('admin.index')}}">Dashboard</a>
+                    </li>
+                    @endif
+
                     @if(!Auth::check())
                     <li>
                         <a class="page-scroll" href="{{route('login')}}">Login</a>
