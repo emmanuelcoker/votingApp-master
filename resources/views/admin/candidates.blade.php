@@ -1,138 +1,145 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<!--Start Admin lte section-->
 
-    <title> Admin</title>
-    
-    {{Html::style("admin/assets/css/bootstrap.css" )}}
-    {{Html::style("admin/assets/css/custom.css" )}}
-    {{Html::style("admin/assets/css/table.css" )}}
+@extends('layouts.admin')
 
-   <!--The Add/delete form-->
-       {{Html::style("admin/mycss/reset.css" )}}
-    {{Html::style("admin/mycss/style.css" )}}
+@section('content')
+<div class="container p-2">
+      <!--Student Section-->
 
-  
-</head>
-<body>
-     
-           
-          
-    <div id="wrapper">
-         <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="adjust-nav">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                        
-                    </button>
-                    <a class="navbar-brand" href=>
-                        <h1>IVOTE</h1>
+{{-- @include('inc.messages') --}}
+@if(count($candidates)>0)
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Election Candidates</h3>
 
-                    </a>
-                    
-                </div>
+          <div class="card-tools">
+          <form action="{{route('searchCandidate')}}" method="POST">
+            {{ csrf_field() }}
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="search" list="candidates" name="search" class="form-control float-right" placeholder="Search">
+              <datalist id="candidates">
+                @foreach($candidates as $candidate)
+                <option value="{{$candidate->regno}}">{{$candidate->regno}}</option>
+                @endforeach
+              </datalist>
+
               
-                <span class="logout-spn" >
-                  <a href="{{route('logout')}}" style="color:#fff;">LOGOUT {{Auth::user()->name}}</a>  
-
-                </span>
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+              </div>
             </div>
+
+          </form>
+          </div>
+
+            <div class="card-tools mr-2">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                  Create Priviledge
+                </button>
+            </div>
+
+            <div class="card-tools mr-2">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop2">
+                Create Seat
+              </button>
+          </div>
+
         </div>
-        <!-- /. NAV TOP  -->
-        <nav class="navbar-default navbar-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
-        
-                    <li>
-                        <a ><i class="fa fa-qrcode "></i></a>
-                    </li>
-                    <li>
-                        <a href="{{route('admin.index')}}"><i class="fa fa-bar-chart-o"></i>Students</a>
-                    </li>
-
-                    <li>
-                        <a href="{{route('admin.candidates')}}"><i class="fa fa-edit "></i>Candidates</a>
-                    </li>
-                    
-                    
-                </ul>
-                            </div>
-
-        </nav>
-        <!-- /. NAV SIDE  -->
-        <div id="page-wrapper" >
-            <div id="page-inner">
-
- <form action="" class="contact" onsubmit="return false;">
-  <fieldset class="contact-inner">
-  <p class="contact-input">
-      <input type="text" name="regno" placeholder="Registration number" autofocus>
-    </p>
-    <p class="contact-input">
-      <input type="text" name="firstName" placeholder="First name…" autofocus>
-    </p>
-    <p class="contact-input">
-      <input type="text" name="secondName" placeholder="Secondname…" autofocus>
-    </p>
-    <p class="contact-input">
-      <input type="text" name="lastName" placeholder="Last name" autofocus>
-    </p>
-
-    <p class="contact-input">
-      <label for="select" class="select">
-        <select name="subject" id="select">
-          <option value="1" selected>Which campus?</option>
-          <option value="1">Main</option>
-          <option value="1">Karen</option>
-           <option value="1">Karen</option>
-          <option value="1">Westlands</option>
-        </select>
-      </label>
-    </p>
-    <p class="contact-submit">
-      <input type="submit" value="Add Candidate">
-    </p>
-  </fieldset>
-</form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="constrainer2">
-<h3>All Candidates</h3>
-    <table>
-        <thead>
-        <th>Reg no.</th><th>Name</th><th>Seat</th><th>Votes</th>
-        </thead>
-        <tbody>
-        @foreach($candidates as $candidate)
-        <tr><td>{{$candidate->regno}}</td><td>{{$candidate->name}}</td><td>{{$candidate->seat}}</td><td>{{$candidate->votes}}</td></tr>
-        @endforeach
-       
-     
-        </tbody>
-    </table>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0" style="height: 485px;">
+          <table class="table table-hover fixed text-nowrap">
+    
+            <thead>
+              <th>Reg no.</th>
+              <th>Name</th>
+              <th>Seat</th>
+              <th>Votes</th>
+              <th>Priviledge</th>
+              <th>Action</th>
+            </thead>
+            <tbody>
+                @foreach($candidates as $candidate)    
+                    <tr>
+                        <td>{{$candidate->regno}}</td>
+                        <td>{{$candidate->name}}</td>
+                        <td>{{$candidate->seat}}</td>
+                        <td>{{$candidate->votes}}</td>
+                          @if($candidate->priviledge == 0)
+                            <td>None</td>
+                          @else
+                            <td>{{$candidate->priviledge}}</td>
+                        @endif
+                        
+                        <td class="d-flex">
+                            action
+                        </td>
+                    </tr>
+                @endforeach
+                <div class="card-footer clearfix">
+                    <ul class="pagination pagination-sm m-0 float-right">
+                        {{-- <li class="page-item">{{$products->links() ?? ""}}</li> --}}
+                    </ul>
+                  </div>
+               @else
+                  <p>There are currently no Candidates</p>
+               @endif
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+</div>
+<!-- Scrollable modal for Create product -->
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Add New Priviledge</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      @include('inc.createPriviledge')
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!--end of modal-->
 
-     <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-      <!-- BOOTSTRAP SCRIPTS -->
-    <script src="assets/js/bootstrap.min.js"></script>
-      <!-- CUSTOM SCRIPTS -->
-    <script src="assets/js/custom.js"></script>
-    
-   
-</body>
-</html>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Add New Seat</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      @include('inc.createSeat')
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--end of modal-->
+@endsection
+
+

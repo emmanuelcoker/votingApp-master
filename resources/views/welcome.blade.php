@@ -28,10 +28,12 @@
                     <li>
                         <a class="page-scroll" href="#about">About</a>
                     </li>
+                    @if(Auth::check())
                     @if(auth()->user()->role_id == 1)
                     <li>
                         <a class="page-scroll" href="{{route('admin.index')}}">Dashboard</a>
                     </li>
+                    @endif
                     @endif
 
                     @if(!Auth::check())
@@ -59,10 +61,10 @@
                 </h1>
                 <p>Welcome to <b>ivote</b> where you <b>easily</b> place your vote from <b>anywhere</b>.
                 <h1>We are Lasu we are Proud</h1> .</p>
-                <break></break> <a href="{{route('show')}}" class="btn btn-primary btn-xl page-scroll">vote</a>
-                <break></break>
-                <break></break> <a href="{{route('results')}}" class="btn btn-primary btn-xl page-scroll">see results</a>
-                <break></break>
+                <br> <a href="{{route('show')}}" class="btn btn-primary btn-xl page-scroll">vote</a>
+                <br>
+                <br> <a href="{{route('results')}}" class="btn btn-primary btn-xl page-scroll">see results</a>
+                <br>
             </div>
         </div>
     </header>

@@ -55,9 +55,17 @@ class User extends Authenticatable
         $newVoter->admission_status = "In Session";
         $newVoter->save();
     }
-    public static function addCandidate($studentId,$seat){
+    public static function addCandidate($studentId,$seat,$priviledge,$profile_img){
         $user = User::find($studentId);
-        (new Candidate)->add($user->name,$seat,$user->regno,$user->id);
+        $newCandidate = new Candidate;
+        $newCandidate->name = $user->name;
+        $newCandidate->seat = $seat;
+        $newCandidate->regno = $user->regno;
+        $newCandidate->user_id = $user->id;
+        $newCandidate->priviledge = $priviledge;
+        $newCandidate->votes = 0;
+        $newCandidate->profile_img = $profile_img;
+        $newCandidate->save();
     }
 
      public static function vote($president,$vice,$secretary,$finance){
